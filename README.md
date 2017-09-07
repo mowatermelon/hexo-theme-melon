@@ -125,6 +125,7 @@ share_jia: false
 # 1 Gitment
 # 插件作者官方说明: https://imsun.net/posts/gitment-introduction/
 # 也直接去可以去https://github.com/settings/applications/new  申请你自己的相关id和Secret信息
+# 设置enable为true之后，需要先登录账号，对gitment评论框进行初始化，才可以用，本地是不能测试评论功能的
 #  enable: false
 #  githubID: #{your-github-name}
 #  repo: #{your-github-name}.github.io
