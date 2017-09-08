@@ -46,7 +46,7 @@ subnav:
   github: "https://github.com/mowatermelon"
   #weibo: "#"
   #rss: "#"
-  zhihu: "https://www.zhihu.com/people/wu-mo-61-63/activities"
+  #zhihu: ""
   #qq: "#"
   #weixin: "#"
   #jianshu: "#"
@@ -149,7 +149,7 @@ disqus: false
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
 style:
   # 头像上面的背景颜色
-  header: '##00bcd4'
+  header: '#00bcd4'
   # 右滑板块背景
   slider: 'linear-gradient(200deg,#a0cfe4,#e8c37e)'
 
