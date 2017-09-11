@@ -12,7 +12,7 @@
       <% if (post.excerpt && index){ %>
         <%- post.excerpt %>
         <% if (theme.excerpt_link) { %>
-          <a class="article-more-a" href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %> >></a>
+          <a class="article-more-a" href="<%- url_for(post.path) %>#more"><br/><%= theme.excerpt_link %> <i class="icon icon-roundrightfill"></i></a>
         <% } %>
       <% } else { %>
         <%- post.content %>
@@ -95,6 +95,7 @@
     </section>
   <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <!--<script src="../../../../js/gitment.browser.js"></script>-->
   <script>
     var gitment = new Gitment({
       //id: location.href, // 可选。默认为 location.href

@@ -36,7 +36,7 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
-            <% site.tags.forEach(function(tag, i){ %> 
+            <% site.tags.forEach(function(tag, i){ %>
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color<%= tag.name.length % 5 + 1 %>"><%-tag.name%></a>
               </li>
@@ -46,30 +46,31 @@
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是melon根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
-<pre style="font-size: 12px;" q-show="jsonFail">
-  jsonContent:
-    meta: false
-    pages: false
-    posts:
-      title: true
-      date: true
-      path: true
-      text: false
-      raw: false
-      content: false
-      slug: false
-      updated: false
-      comments: false
-      link: false
-      permalink: false
-      excerpt: false
-      categories: false
-      tags: true
-</pre>
+            <pre style="font-size: 12px;" q-show="jsonFail">
+              jsonContent:
+                meta: false
+                pages: false
+                posts:
+                  title: true
+                  date: true
+                  path: true
+                  text: false
+                  raw: false
+                  content: false
+                  slug: false
+                  updated: false
+                  comments: false
+                  link: false
+                  permalink: false
+                  excerpt: false
+                  categories: false
+                  tags: true
+            </pre>
           </p>
           <li class="search-li" q-repeat="items" q-show="isShow">
+            <label q-text="items"></label>
             <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
             <p class="search-time">
               <i class="icon-calendar icon"></i>
@@ -79,6 +80,10 @@
               <i class="icon-price-tags icon"></i>
               <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
             </p>
+            <p class="search-text">
+              <span q-text="text|textformat"></span>
+            </p>
+
           </li>
         </ul>
     	</section>
@@ -90,7 +95,7 @@
         <ul class="search-ul">
           <% for (var i in theme.friends){ %>
             <li class="search-li">
-              <a href="<%- url_for(theme.friends[i]) %>" target="_blank" class="search-title"><i class="icon-quo-left icon"></i><%= i %></a>
+              <a href="<%- url_for(theme.friends[i]) %>" target="_self" class="search-title"><i class="icon-quo-left icon"></i><%= i %></a>
             </li>
           <% } %>
         </ul>
@@ -106,5 +111,5 @@
     	</section>
     <%}%>
   </div>
-  
+
 </div>

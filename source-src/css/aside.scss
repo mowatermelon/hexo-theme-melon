@@ -1,7 +1,7 @@
 .wrap-side-operation {
     position: fixed;
     right: 40px;
-    bottom: 50px;
+    bottom: 40px;
     z-index: 999;
     font-size: 14px;
     .icon-plane {
@@ -29,8 +29,8 @@
 .jump-container, .toc-container {
     position: relative;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     opacity: .8;
 }
 .jump-plan-container {

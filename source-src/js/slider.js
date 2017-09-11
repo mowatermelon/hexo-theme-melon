@@ -13,6 +13,7 @@ window.fetch = window.fetch || fetch
 
 let localTagKey = 'yilia-tag'
 let localSearchKey = 'yilia-search'
+let localJumpKey = 'melon-jump'
 const isMobile = (Browser.versions.mobile && window.screen.width < 800)
 
 function fixzero(str) {
@@ -47,6 +48,9 @@ function init() {
 	    	},
 	    	choseTag: (e, name) => {
 	    		app.$set('search', '#' + (name ? name : e.target.innerHTML))
+        },
+	    	choseCategorie: (e, name) => {
+	    		app.$set('Jump',  (name ? name : e.target.innerHTML))
 	    	},
 	    	clearChose: (e) => {
 	    		app.$set('search', '')
@@ -55,11 +59,11 @@ function init() {
 	    		app.$set('showTags', !app.showTags)
 	    		window.localStorage && window.localStorage.setItem(localTagKey, app.showTags)
 	    	},
-	        openSlider: (e, type) => {
-	        	e.stopPropagation()
-	        	if (!type) {
-	        		type = 'innerArchive'
-	        	}
+        openSlider: (e, type) => {
+          e.stopPropagation()
+          if (!type) {
+            type = 'innerArchive'
+          }
 				// innerArchive: '所有文章'
   				// friends: '友情链接'
   				// aboutme: '关于我'
@@ -87,7 +91,10 @@ function init() {
 	    	},
 	    	tagformat: (str) => {
 	    		return '#' + str
-	    	},
+        },
+	    	textformat: (str) => {
+	    		return str.substr(0, 35)+"···"
+        },
 	    	dateformat: (str) => {
 	    		let d = new Date(str)
 	    		return d.getFullYear() + '-' + fixzero((d.getMonth() + 1)) + '-' + fixzero(d.getDate())
@@ -103,6 +110,10 @@ function init() {
 		if (val.indexOf('#') === 0) {
 			val = val.substr(1, val.length)
 			type = 'tag'
+    }
+		if (val.indexOf('/') === 0) {
+			val = val.substr(1, val.length)
+			type = 'text'
 		}
 		let items = app.items
 	  	items.forEach((item) => {
@@ -116,9 +127,14 @@ function init() {
 	  			if (tag.name.toLowerCase().indexOf(val) > -1) {
 	      			matchTags = true
 	      		}
-	  		})
+        })
 
-	  		if ((type === 'title' && matchTitle) || (type === 'tag' && matchTags)) {
+        let matchTexts = false
+	  		if (item.text.toLowerCase().indexOf(val) > -1) {
+	  			matchTexts = true
+	  		}
+
+	  		if ((type === 'title' && matchTitle) || (type === 'tag' && matchTags)||(type === 'text' && matchTexts)) {
 	  			item.isShow = true
 	  		} else {
 	  			item.isShow = false
@@ -131,6 +147,12 @@ function init() {
 		window.localStorage && window.localStorage.setItem(localSearchKey, val)
 		handleSearch(val)
     })
+
+  app.$watch('Jump', function(val, oldVal){
+    window.localStorage && window.localStorage.setItem(localJumpKey, val)
+    val = "/categories/" + val
+    window.top.location.replace(val);
+  })
 
 	window.fetch(window.yiliaConfig.root + 'content.json?t=' + (+ new Date()), {
 		method: 'get',
