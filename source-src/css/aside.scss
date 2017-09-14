@@ -29,9 +29,16 @@
 .jump-container, .toc-container {
     position: relative;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
     opacity: .8;
+}
+.jump-container {
+  width: 30px;
+  height: 30px;
+}
+.toc-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 .jump-plan-container {
     position: absolute;
@@ -60,6 +67,7 @@
         width: 40px;
         text-align: center;
         display: block;
+        border-radius: 50%;
         &:hover {
             background: #24c1f6;
             color: #24c1f6;
@@ -69,7 +77,7 @@
 
 .toc-container.tooltip-left{
     background: #ccc;
-    margin-top: 10px;
+    margin-top: 1em;
     transition: 0.3s;
     &:hover {
         background: rgba(36, 193, 246, 0.9);
@@ -86,7 +94,7 @@
         left: 0;
     }
     .tooltip-east .tooltip-content {
-        min-height: 100px;
+        min-height: 60px;
         text-align: left;
         padding: 5px 0 5px 20px;
         right: 4.7em;
